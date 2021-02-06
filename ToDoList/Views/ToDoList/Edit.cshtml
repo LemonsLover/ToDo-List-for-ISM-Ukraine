@@ -1,0 +1,35 @@
+﻿@model ToDoList.Models.ToDoListModel
+
+@{
+    ViewData["Title"] = "Edit task";
+}
+
+<h1>Edit task</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Content" class="control-label"></label>
+                <input asp-for="Content" class="form-control" placeholder="Type changed task here..." required />
+                <label asp-for="IsDone" class="control-label">Is your task done ?</label><br>
+                <input asp-for="IsDone" type="checkbox" placeholder="Type changed task here..." />
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

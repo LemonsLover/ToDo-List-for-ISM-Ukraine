@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ToDoList.Models.ToDoListModel>
+
+@{
+    ViewData["Title"] = "ToDo List";
+}
+
+
+<form asp-action="TaskProgress">
+    <table class="table">
+        <thead>
+
+            <tr>
+                <th class="center">
+                    Tasks
+                </th>
+                <th class="center">Controls</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                @if (item.IsDone == false)
+                {
+
+                    <tr class="task">
+                        <td>
+                            <b>@item.Content</b>
+                        </td>
+                        <td class="center controls">
+                            <a asp-action="Edit" asp-route-id="@item.Id"><code title="EDIT">&#9998;</code></a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id"><code title="DELETE">&#128465;</code></a>
+                        </td>
+                    </tr>
+                }
+            }
+            @foreach (var item in Model)
+            {
+                @if (item.IsDone == true)
+                {
+                    <tr class="task">
+                        <td>
+
+                            <b>&#10003;</b> <b style="text-decoration:line-through">@item.Content</b>
+
+                        </td>
+                        <td class="center controls">
+                            <a asp-action="Edit" asp-route-id="@item.Id"><code title="EDIT">&#9998;</code></a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id"><code title="DELETE">&#128465;</code></a>
+                        </td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+        <tr>
+            <td class="controls">
+                <p>
+                    <a asp-action="AddTask"><code title="Add task to list">&#10010;</code></a>
+                </p>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+</form>
+
