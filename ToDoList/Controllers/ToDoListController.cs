@@ -24,7 +24,7 @@ namespace ToDoList.Controllers
 
         public async Task<ActionResult> Index()
         {
-            IQueryable<ToDoListModel> tasks = from i in db.ToDoList orderby i.Id select i;
+            IQueryable<ToDoListModel> tasks = from i in db.ToDoList orderby i.IsDone select i;
 
             List<ToDoListModel> toDoList = await tasks.ToListAsync();
             return View(toDoList);
